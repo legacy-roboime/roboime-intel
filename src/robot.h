@@ -5,6 +5,7 @@
 #include "commons/path.h"
 #include "commons/command.h"
 #include "control/pid.h"
+#include "control/potential_field.h"
 
 class Robot{
 private:
@@ -16,10 +17,13 @@ private:
 
 	PID pid;
 	//PotentialField potentialField;
+	vector<Robot> *robots;
 
 public:
 	Robot();
 	Robot(Robot*);
+
+	void linkRobots(vector<Robot>*);
 
 	void setId(int);
 	void setIsYellow(bool);

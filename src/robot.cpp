@@ -17,6 +17,10 @@ Robot::Robot(Robot *r){
 	offpath = r->offpath;
 }
 
+void Robot::linkRobots(vector<Robot> *robots){
+	this->robots = robots;
+}
+
 void Robot::setId(int id){
 	this->id = id;
 }
