@@ -1,6 +1,10 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
+#include "iostream"
+
+using namespace std;
+
 class Debug{
 private:
 	// none
