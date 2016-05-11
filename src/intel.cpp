@@ -21,12 +21,11 @@ void Intel::init(){
 	    float ball_x, ball_y, ball_vx, ball_vy;
 
         cin >> ball_x >> ball_y >> ball_vx >> ball_vy;
-        
+
         ball.setX(ball_x);
         ball.setY(ball_y);
         vball.setX(ball_vx);
         vball.setY(ball_vy);
-
 	}else{
 		cerr << "not compatible" << endl;
 	}
@@ -40,6 +39,21 @@ void Intel::loop(){
             >> score_player >> score_opponent
             >> goalie_id_player >> goalie_id_opponent
             >> robot_count_player >> robot_count_opponent;
+
+        for (int i = 0; i < robot_count_player; ++i) {
+        	Robot robot;
+            int robot_id;
+            float robot_x, robot_y, robot_w, robot_vx, robot_vy, robot_vw;
+
+            cin >> robot_id >> robot_x >> robot_y >> robot_w >> robot_vx >> robot_vy >> robot_vw;
+            
+            robot.setId(robot_id);
+            robot.setIsOurTeam(true);
+            robot.setActPose(Pose(robot_x, robot_y, robot_w));
+            robot.setActVel(Pose(robot_vx, robot_vy, robot_vw));
+
+           	//robots.push_back();
+        }
 	}
 }
 

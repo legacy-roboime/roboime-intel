@@ -10,7 +10,7 @@
 class Robot{
 private:
 	int id;						
-	bool is_yellow;				
+	bool is_our_team;				
 	Pose actPose, setPose, finalPose;
 	Pose actVel;
 	Command command;	
@@ -27,7 +27,7 @@ public:
 	void linkRobots(vector<Robot>*);
 
 	void setId(int);
-	void setIsYellow(bool);
+	void setIsOurTeam(bool);
 	void setActPose(Pose);
 	void setSetPose(Pose);
 	void setFinalPose(Pose);
@@ -36,7 +36,7 @@ public:
 	void setPath(Path);
 
 	int getId();
-	bool getIsYellow();
+	bool getIsOurTeam();
 	Pose getActPose();
 	Pose getSetPose();
 	Pose getFinalPose();

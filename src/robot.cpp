@@ -2,14 +2,14 @@
 
 Robot::Robot(){
 	id = 0;
-	is_yellow = true;
+	is_our_team = true;
 	actPose = setPose = finalPose = Pose(0, 0, 0);
 	command = Command(0, 0, 0);
 }
 
 Robot::Robot(Robot *r){
 	id = r->id;
-	is_yellow = r->is_yellow;
+	is_our_team = r->is_our_team;
 	actPose = r->actPose;
 	setPose = r->setPose;
 	finalPose = r->finalPose;
@@ -25,8 +25,8 @@ void Robot::setId(int id){
 	this->id = id;
 }
 
-void Robot::setIsYellow(bool is_yellow){
-	this->is_yellow = is_yellow;
+void Robot::setIsOurTeam(bool is_our_team){
+	this->is_our_team = is_our_team;
 }
 
 void Robot::setActPose(Pose actPose){
@@ -57,8 +57,8 @@ int Robot::getId(){
 	return id;
 }
 
-bool Robot::getIsYellow(){
-	return is_yellow;
+bool Robot::getIsOurTeam(){
+	return is_our_team;
 }
 
 Pose Robot::getActPose(){

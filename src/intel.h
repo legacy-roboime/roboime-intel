@@ -18,7 +18,7 @@ private:
 	SSL_Geometry geometry;
 	vector<Robot> robots;
 	Pose ball, vball;
-	
+
 	void loop();
 
 public:
