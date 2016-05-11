@@ -7,6 +7,8 @@
 
 #include "pose.h"
 #include "path.h"
+#include "command.h"
+
 
 namespace common{
 	float radians(Pose a, Pose b);

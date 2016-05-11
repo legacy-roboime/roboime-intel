@@ -21,6 +21,7 @@ vector<Pose> Path::getPath(){
 }
 
 void Path::show(){
+	cerr << "Path" << endl;
 	for(int i = 0 ; i < poses.size() ; i++){
 		poses.at(i).show();
 	}
