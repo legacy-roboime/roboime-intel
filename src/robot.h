@@ -12,6 +12,7 @@ private:
 	int id;						
 	bool is_yellow;				
 	Pose actPose, setPose, finalPose;
+	Pose actVel;
 	Command command;	
 	Path offpath;
 
@@ -30,6 +31,7 @@ public:
 	void setActPose(Pose);
 	void setSetPose(Pose);
 	void setFinalPose(Pose);
+	void setActVel(Pose);
 	void setCommand(Command);
 	void setPath(Path);
 
@@ -38,6 +40,7 @@ public:
 	Pose getActPose();
 	Pose getSetPose();
 	Pose getFinalPose();
+	Pose getActVel();
 	Command getCommand();
 	Path getPath();
 };

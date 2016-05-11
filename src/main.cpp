@@ -1,28 +1,17 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include "commons/commons.h"
-int main() {
-    using namespace std;
+#include "intel.h"
 
+using namespace std;
+
+int main() {
+    Intel intel;
     cerr << "started" << endl;
 
-    // Version check I/O
-
-    const int compat_version = 1;
-    string magic_string;
-    int version;
-    cin >> magic_string >> version;
-    if (magic_string == "ROBOIME_AI_PROTOCOL" && version == compat_version) {
-        cout << "COMPATIBLE " << compat_version << endl;
-    } else {
-        cout << "NOT_COMPATIBLE " << compat_version << endl;
-        return 0;
-    }
-    cerr << "compatible" << endl;
+    intel.init();
 
     // Geometry input
-
     float field_length;
     float field_width;
     float goal_width;
@@ -33,7 +22,7 @@ int main() {
     float penalty_spot_from_field_line_dist;
     float penalty_line_from_spot_dist;
 
-    cin >> field_length
+    /*cin >> field_length
         >> field_width
         >> goal_width
         >> center_circle_radius
@@ -41,7 +30,7 @@ int main() {
         >> defense_stretch
         >> free_kick_from_defense_distance
         >> penalty_spot_from_field_line_dist
-        >> penalty_line_from_spot_dist;
+        >> penalty_line_from_spot_dist;*/
 
     cerr << "initialized" << endl;
 
@@ -65,12 +54,12 @@ int main() {
         int goalie_id_player, goalie_id_opponent;
         int robot_count_player, robot_count_opponent;
 
-        cin >> counter
+        /*cin >> counter
             >> timestamp
             >> referee_state >> referee_time_left
             >> score_player >> score_opponent
             >> goalie_id_player >> goalie_id_opponent
-            >> robot_count_player >> robot_count_opponent;
+            >> robot_count_player >> robot_count_opponent;*/
 
         float ball_x, ball_y, ball_vx, ball_vy;
 

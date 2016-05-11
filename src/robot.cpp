@@ -41,6 +41,10 @@ void Robot::setFinalPose(Pose finalPose){
 	this->finalPose = finalPose;
 }
 
+void Robot::setActVel(Pose actVel){
+	this->actVel = actVel;
+}
+
 void Robot::setCommand(Command command){
 	this->command = command;
 }
@@ -67,6 +71,10 @@ Pose Robot::getSetPose(){
 
 Pose Robot::getFinalPose(){
 	return finalPose;
+}
+
+Pose Robot::getActVel(){
+	return actVel;
 }
 
 Command Robot::getCommand(){
