@@ -1,21 +1,19 @@
-#ifndef _POSE_H_
-#define _POSE_H_
+#ifndef _PATH_H_
+#define _PATH_H_
 
 #include "vector"
-
-#include "debug.h"
 #include "pose.h"
 
 using namespace std;
 
-class Path : public Debug{
+class Path{
 private:
-	vector<Pose> path;
+	vector<Pose> poses;
 
 public:
 	Path();
 	Path(vector<Pose>);
-	Path(Path);
+	Path(Path*);
 
 	void setPath(vector<Pose>);
 	vector<Pose> getPath();
@@ -23,4 +21,4 @@ public:
 	void show();	// from Debug
 };
 
-#endif // _POSE_H_
+#endif // _PATH_H_

@@ -1,9 +1,11 @@
 #ifndef _POSE_H_
 #define _POSE_H_
 
-#include "debug.h"
+#include "iostream"
 
-class Pose : public Debug{
+using namespace std;
+
+class Pose{
 private:
 	float x, y, yaw;
 
