@@ -4,6 +4,7 @@
 #include "commons/pose.h"
 #include "commons/path.h"
 #include "commons/command.h"
+#include "control/pid.h"
 
 class Robot{
 private:
@@ -12,6 +13,9 @@ private:
 	Pose actPose, setPose, finalPose;
 	Command command;	
 	Path offpath;
+
+	PID pid;
+	//PotentialField potentialField;
 
 public:
 	Robot();

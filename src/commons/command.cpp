@@ -1,45 +1,45 @@
 #include "command.h"
 
 Command::Command(){
-	vel_tangent = vel_normal = vel_angular = 0.0;
+	velTangent = velNormal = velAngular = 0.0;
 }
 
-Command::Command(float vel_tangent, float vel_normal, float vel_angular){
-	this->vel_tangent = vel_tangent;
-	this->vel_normal = vel_normal;
-	this->vel_angular = vel_angular;
+Command::Command(float velTangent, float velNormal, float velAngular){
+	this->velTangent = velTangent;
+	this->velNormal = velNormal;
+	this->velAngular = velAngular;
 }
 
 Command::Command(Command *cmd){
-	vel_tangent = cmd->vel_tangent;
-	vel_normal = cmd->vel_normal;
-	vel_angular = cmd->vel_angular;
+	velTangent = cmd->velTangent;
+	velNormal = cmd->velNormal;
+	velAngular = cmd->velAngular;
 }
 
-void Command::setVelTan(float vel_tangent){
-	this->vel_tangent = vel_tangent;
+void Command::setVelTan(float velTangent){
+	this->velTangent = velTangent;
 }
 
-void Command::setVelNorm(float vel_normal){
-	this->vel_normal = vel_normal;
+void Command::setVelNorm(float velNormal){
+	this->velNormal = velNormal;
 }
 
-void Command::setVetAng(float vel_angular){
-	this->vel_angular = vel_angular;
+void Command::setVelAng(float velAngular){
+	this->velAngular = velAngular;
 }
 
 float Command::getVelTan(){
-	return vel_tangent;
+	return velTangent;
 }
 
 float Command::getVelNorm(){
-	return vel_normal;
+	return velNormal;
 }
 
 float Command::getVelAng(){
-	return vel_angular;
+	return velAngular;
 }
 
 void Command::show(){
-	cerr << "Command(" << vel_tangent << ", " << vel_normal << ", " << vel_angular << ")" << endl;
+	cerr << "Command(" << velTangent << ", " << velNormal << ", " << velAngular << ")" << endl;
 }
