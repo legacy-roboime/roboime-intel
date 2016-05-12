@@ -25,7 +25,7 @@ License
 [protobuf]: https://developers.google.com/protocol-buffers/
 [travis]: https://travis-ci.org/SIRLab/VSS-Vision
 [install]: https://github.com/roboime/roboime-intel/blob/master/INSTALL.md
-
+[roboime-next]: https://github.com/roboime/roboime-next
 
 
 
