@@ -21,6 +21,11 @@ void Robot::linkRobots(vector<Robot> *robots){
 	this->robots = robots;
 }
 
+void Robot::linkBall(Pose *ball, Pose *vball){
+	this->ball = ball;
+	this->vball = vball;
+}
+
 void Robot::setId(int id){
 	this->id = id;
 }
@@ -83,4 +88,11 @@ Command Robot::getCommand(){
 
 Path Robot::getPath(){
 	return offpath;
+}
+
+void Robot::calcAction(){
+	//	Path = PathPlanning(); 
+	//	Pose = PotentialField(Path.poses.at(int i = 0 -> Path.poses.size()-1));
+	// 	Command = PID(Pose);
+	// 	Done !
 }

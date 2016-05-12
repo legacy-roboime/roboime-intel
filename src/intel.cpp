@@ -18,14 +18,29 @@ void Intel::init(){
 	        >> geometry.penalty_spot_from_field_line_dist
 	        >> geometry.penalty_line_from_spot_dist;
 
-	    float ball_x, ball_y, ball_vx, ball_vy;
+        // init vector of robots
+        for(int i = 0 ; i < 10 ; i++){
+            Robot robot;
 
-        cin >> ball_x >> ball_y >> ball_vx >> ball_vy;
+            robot.setId(i);
 
-        ball.setX(ball_x);
-        ball.setY(ball_y);
-        vball.setX(ball_vx);
-        vball.setY(ball_vy);
+            if(i < 5)   robot.setIsOurTeam(true);
+            else        robot.setIsOurTeam(false);
+            
+            robot.setActPose(Pose(0, 0, 0));
+            robot.setSetPose(Pose(0, 0, 0));
+            robot.setFinalPose(Pose(0, 0, 0));
+            robot.setActVel(Pose(0, 0, 0));
+            robot.setCommand(Command(0, 0, 0));
+
+            robots.push_back(robot);
+        }
+
+        // set pointers
+        for(int i = 0 ; i < robots.size() ; i++){
+            robots.at(i).linkRobots(&robots);
+            robots.at(i).linkBall(&ball, &vball);
+        }
 	}else{
 		cerr << "not compatible" << endl;
 	}
@@ -40,19 +55,59 @@ void Intel::loop(){
             >> goalie_id_player >> goalie_id_opponent
             >> robot_count_player >> robot_count_opponent;
 
-        for (int i = 0; i < robot_count_player; ++i) {
-        	Robot robot;
+        float ball_x, ball_y, ball_vx, ball_vy;
+        cin >> ball_x >> ball_y >> ball_vx >> ball_vy;
+
+        ball.setX(ball_x);
+        ball.setY(ball_y);
+        vball.setX(ball_vx);
+        vball.setY(ball_vy);
+
+        for(int i = 0; i < robot_count_player; i++){
             int robot_id;
             float robot_x, robot_y, robot_w, robot_vx, robot_vy, robot_vw;
 
             cin >> robot_id >> robot_x >> robot_y >> robot_w >> robot_vx >> robot_vy >> robot_vw;
             
-            robot.setId(robot_id);
-            robot.setIsOurTeam(true);
-            robot.setActPose(Pose(robot_x, robot_y, robot_w));
-            robot.setActVel(Pose(robot_vx, robot_vy, robot_vw));
+            robots.at(robot_id).setActPose(Pose(robot_x, robot_y, robot_w));
+            robots.at(robot_id).setActVel(Pose(robot_vx, robot_vy, robot_vw));
+        }
 
-           	//robots.push_back();
+        for(int i = 0; i < robot_count_opponent; i++){
+            int robot_id;
+            float robot_x, robot_y, robot_w, robot_vx, robot_vy, robot_vw;
+
+            cin >> robot_id >> robot_x >> robot_y >> robot_w >> robot_vx >> robot_vy >> robot_vw;
+
+            robots.at(robot_id+5).setActPose(Pose(robot_x, robot_y, robot_w));
+            robots.at(robot_id+5).setActVel(Pose(robot_vx, robot_vy, robot_vw));
+        }
+
+        //  Intelligence should be calculated here and set at least final poses for each robot
+        //
+        //  vector<Pose> poses = ia.calc();     
+        //
+        //  for(int i = 0 ; i < 5 ; i++){
+        //      robots.at(i).setFinalPose(poses);   // something like STP
+        //      OR
+        //      robots.at(i).iacalc();              // something like agents
+        //  }
+        //  
+        //  After we have the final poses we can calc Path Planning -> Potential Field -> Control (PID) BELLOW \/
+
+        //  5 cause it's only our robots
+        for(int i = 0 ; i < 5 ; i++){
+            if(i == 0){                 // DEBUG
+                Command cmd;
+                float kick_x = 4.0f;
+                float kick_z = 0.0f;
+                float spin = true;
+
+                robots.at(i).calcAction();
+                cmd = robots.at(i).getCommand();
+
+                cout << cmd.getVelTan() << " " << cmd.getVelNorm() << " " << cmd.getVelAng() << " " << kick_x << " " << kick_z << " " << spin << endl;
+            }
         }
 	}
 }

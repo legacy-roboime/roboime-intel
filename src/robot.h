@@ -17,14 +17,17 @@ private:
 	Path offpath;
 
 	PID pid;
-	//PotentialField potentialField;
+	PotentialField potentialField;
+
 	vector<Robot> *robots;
+	Pose *ball, *vball;
 
 public:
 	Robot();
 	Robot(Robot*);
 
 	void linkRobots(vector<Robot>*);
+	void linkBall(Pose*, Pose*);
 
 	void setId(int);
 	void setIsOurTeam(bool);
@@ -43,6 +46,8 @@ public:
 	Pose getActVel();
 	Command getCommand();
 	Path getPath();
+
+	void calcAction();
 };
 
 #endif // _ROBOT_H_

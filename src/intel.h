@@ -19,13 +19,14 @@ private:
 	vector<Robot> robots;
 	Pose ball, vball;
 
+	bool checkVersionIO();
 	void loop();
 
 public:
 	Intel();
 	
 	void init();
-	bool checkVersionIO();
+	
 };
 
 #endif // _INTEL_H_
