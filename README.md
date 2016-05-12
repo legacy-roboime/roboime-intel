@@ -16,12 +16,7 @@ Installation
 
 Development and Use
 -------------------
-```
-$ cd VSS-Vision
-$ make all_vss (Compile Protos, Calibration and Vision)
-$ make (Compile only Vision)
-$ make run
-```
+> TODO
 
 License
 -------
