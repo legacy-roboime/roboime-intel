@@ -33,8 +33,7 @@ public:
     float getPenaltyLineFromSpotDist() const { return penalty_line_from_spot_dist_; }
     
     void setGeometry(float, float, float, float, float, float, float, float, float);
-
-    void printGeometry(); //debug purposes
+    
 private:
 	float field_length_;
     float field_width_;

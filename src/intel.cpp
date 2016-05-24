@@ -110,7 +110,7 @@ void Intel::loop(){
         }
 
         cout << counter << endl;
-        //  Intelligence should be calculated here and set at least final poses for each robot
+        //  Intelligence should be calculated here and set at least final poses get each robot
         //
         //  vector<Pose> poses = ia.calc();     
         //
@@ -123,7 +123,7 @@ void Intel::loop(){
         //  After we have the final poses we can calc Path Planning -> Potential Field ->   Control (PID) BELLOW \/
 
         //  5 cause it's only our robots
-        /*for(int i = 0 ; i < robots.size() ; i++){ // TODO(Luciano) : refactor this so kick is part of command class
+        for(int i = 0 ; i < robot_count_player ; i++){ // TODO(Luciano) : refactor this so kick is part of command class
             Command cmd(0.0f, 0.0f, 0.0f);
             const int robot_id = robots.at(i).getId();
             float kick_x = 0.0f;
@@ -140,9 +140,6 @@ void Intel::loop(){
                 spin = true;
             }
             cout << cmd.getVelTan() << " " << cmd.getVelNorm() << " " << cmd.getVelAng() << " " << kick_x << " " << kick_z << " " << spin << endl;    
-        }*/
-        for (int i = 0 ; i < robot_count_player ; ++i){
-            cout << 2.0f << " " << 1.0f << " " << 0.0f << " " << 0.0f << " " << 0.0f << " " << 1 << endl;
         }
     }
 }

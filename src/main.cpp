@@ -10,5 +10,4 @@ int main() {
     cerr << "started" << endl;
     intel.init();
     intel.loop();
-    intel.getGeometry().printGeometry();
 }

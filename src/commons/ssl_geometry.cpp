@@ -49,6 +49,7 @@ void SSL_Geometry::setGeometry
     setPenaltyLineFromSpotDist ( penalty_line_from_spot_dist );
 }
 
+
 /*SSL_Geometry::SSL_Geometry
 (       float field_length,
         float field_width,
@@ -70,7 +71,7 @@ void SSL_Geometry::setGeometry
     penalty_spot_from_field_line_dist_ = penalty_spot_from_field_line_dist;
     penalty_line_from_spot_dist_ = penalty_line_from_spot_dist;
 }*/
-
+/* Method for debugging 
 void SSL_Geometry::printGeometry(){
     std::cout 
     << getFieldLength() << " "
@@ -82,4 +83,4 @@ void SSL_Geometry::printGeometry(){
     << getFreeKickFromDefenseDist() << " "
     << getPenaltySpotFromFieldLineDist() << " "
     << getPenaltyLineFromSpotDist();
-}
+}*/
