@@ -20,12 +20,13 @@ private:
 	Pose ball, vball;
 
 	bool checkVersionIO();
-	void loop();
-
 public:
 	Intel();
-	
+    SSL_Geometry getGeometry() const { return geometry; }	
 	void init();
+    void loop();
+
+    int getCounter() const { return counter ;}
 	
 };
 

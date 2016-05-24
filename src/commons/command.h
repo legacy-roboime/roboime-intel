@@ -7,7 +7,7 @@ using namespace std;
 
 class Command{
 private:
-	float velTangent, velNormal, velAngular;
+	float velTangent_, velNormal_, velAngular_;
 
 public:
 	Command();

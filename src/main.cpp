@@ -8,6 +8,7 @@ using namespace std;
 int main() {
     Intel intel;
     cerr << "started" << endl;
-
     intel.init();
+    intel.loop();
+    intel.getGeometry().printGeometry();
 }
