@@ -100,7 +100,24 @@ void Robot::calcAction(){
 	potentialField.setRobots(poses);
 
 	Pose targetPosition = potentialField.calcResult(id, *ball, true);
-	command = pid.calcCommand(actPose, *ball);
+
+	targetPosition.setX(actPose.getX() + targetPosition.getX());
+	targetPosition.setY(actPose.getY() + targetPosition.getY());
+
+	/*cerr << "target" << endl;
+	targetPosition.show();
+	cerr << "act" << endl;
+	cerr << endl;*/
+	
+	cerr << "act" << endl;
+	actPose.show();
+	cerr << "ball" << endl;
+	ball->show();
+	cerr << "target" << endl;
+	targetPosition.show();
+
+
+	command = pid.calcCommand(actPose, targetPosition);			// Pose(0, 0, 0) to Potential Field return, just put the vector on origin
 
 	//	Path = PathPlanning(); 
 	//	Pose = PotentialField(Path.poses.at(int i = 0 -> Path.poses.size()-1));

@@ -41,11 +41,13 @@ Command PID::calcCommand(Pose actPose, Pose setPose){
 void PID::calcProportional(){
 	float vel_tangent = proportionalL * ((setPose.getX() - actPose.getX()) * cos(actPose.getYaw()) + (setPose.getY() - actPose.getY()) * sin(actPose.getYaw()));
 	float vel_normal = proportionalL * ((setPose.getY() - actPose.getY()) * cos(actPose.getYaw()) - (setPose.getX() - actPose.getX()) * sin(actPose.getYaw()));
-	float vel_angular = proportionalA * (0.0f - actPose.getYaw());
+	float vel_angular = proportionalA * (setPose.getYaw() - actPose.getYaw());
 	
 	command.setVelTan(vel_tangent);
 	command.setVelNorm(vel_normal);
 	command.setVelAng(vel_angular);
+
+	command.show();
 }
 
 void PID::calcDerivative(){
