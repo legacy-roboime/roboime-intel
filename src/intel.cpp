@@ -99,14 +99,15 @@ void Intel::loop(){
             robots.at(robot_id).setActVel(Pose(robot_vx, robot_vy, robot_vw));
         }
 
+
         for(int i = 0; i < robot_count_opponent; i++){
             int robot_id;
             float robot_x, robot_y, robot_w, robot_vx, robot_vy, robot_vw;
 
             cin >> robot_id >> robot_x >> robot_y >> robot_w >> robot_vx >> robot_vy >> robot_vw;
 
-            robots.at(robot_id).setActPose(Pose(robot_x, robot_y, robot_w));
-            robots.at(robot_id).setActVel(Pose(robot_vx, robot_vy, robot_vw));
+            //robots.at(robot_id+5).setActPose(Pose(robot_x, robot_y, robot_w));
+            //robots.at(robot_id+5).setActVel(Pose(robot_vx, robot_vy, robot_vw));
         }
 
         cout << counter << endl;
@@ -129,12 +130,10 @@ void Intel::loop(){
             float kick_x = 0.0f;
             float kick_z = 0.0f;
             float spin = false;
-            robots.at(i).calcAction();
-            cmd = robots.at(i).getCommand();
+            
             if(robot_id == 0 ){
-                cmd.setVelTan(1.0);
-                cmd.setVelNorm(0.0);
-                cmd.setVelAng(1.0);
+                robots.at(i).calcAction();
+                cmd = robots.at(i).getCommand();
                 kick_x = 4.0f;
                 kick_z = 0.0f;
                 spin = true;

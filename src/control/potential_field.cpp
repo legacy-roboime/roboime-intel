@@ -28,10 +28,10 @@ Pose PotentialField::calcResult(int id, Pose goal, bool is_last){
 	this->id = id;
 	this->is_last = is_last;
 	this->goal = goal;
-	
+
 	attractiveForce();
-	repulsiveForceOurRobots();
-	repulsiveForceAdvRobots();
+	//repulsiveForceOurRobots();
+	//repulsiveForceAdvRobots();
 
 	return result;
 }
