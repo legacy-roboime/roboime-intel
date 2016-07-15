@@ -25,7 +25,9 @@ public:
     SSL_Geometry getGeometry() const { return geometry; }	
 	void init();
     void loop();
-	
+	void receive_new_state();
+    void send_new_command();
+    void calc_intel();
 };
 
 #endif // _INTEL_H_

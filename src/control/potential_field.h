@@ -13,7 +13,7 @@ private:
 
 	int id;
 	bool is_last;
-	vector<Pose> *robots; 
+	vector<Pose> robots; 
 	Pose result, goal;
 
 	int sign(float signal);
@@ -25,7 +25,7 @@ public:
 	PotentialField();
 	PotentialField(PotentialField*);
 
-	void linkRobots(vector<Pose>*);
+	void setRobots(vector<Pose>);
 
 	Pose calcResult(int, Pose, bool);
 };

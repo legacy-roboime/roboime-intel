@@ -91,9 +91,21 @@ Path Robot::getPath(){
 }
 
 void Robot::calcAction(){
-	//Pose targetPosition = potentialField.calcResult(id, *ball, true);
-	//targetPosition.show();
-	command = pid.calcCommand(actPose, *ball);
+	vector<Pose> poses;
+
+	for(int i = 0 ; i < robots->size() ; i++){
+		poses.push_back(robots->at(i).getActPose());
+	}
+
+	potentialField.setRobots(poses);
+
+	Pose targetPosition = potentialField.calcResult(id, *ball, true);
+
+	targetPosition.setX(actPose.getX() + targetPosition.getX());
+	targetPosition.setY(actPose.getY() + targetPosition.getY());
+
+
+	command = pid.calcCommand(actPose, targetPosition);			// Pose(0, 0, 0) to Potential Field return, just put the vector on origin
 
 	//	Path = PathPlanning(); 
 	//	Pose = PotentialField(Path.poses.at(int i = 0 -> Path.poses.size()-1));
