@@ -133,7 +133,7 @@ void Intel::loop(){
             
             if(robot_id == 0 ){
                 robots.at(i).calcAction();
-                cmd = robots.at(i).getCommand(); // PID Calc BUG
+                cmd = robots.at(i).getCommand();
                 kick_x = 4.0f;
                 kick_z = 0.0f;
                 spin = true;
