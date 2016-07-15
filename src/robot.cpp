@@ -104,18 +104,6 @@ void Robot::calcAction(){
 	targetPosition.setX(actPose.getX() + targetPosition.getX());
 	targetPosition.setY(actPose.getY() + targetPosition.getY());
 
-	/*cerr << "target" << endl;
-	targetPosition.show();
-	cerr << "act" << endl;
-	cerr << endl;*/
-	
-	cerr << "act" << endl;
-	actPose.show();
-	cerr << "ball" << endl;
-	ball->show();
-	cerr << "target" << endl;
-	targetPosition.show();
-
 
 	command = pid.calcCommand(actPose, targetPosition);			// Pose(0, 0, 0) to Potential Field return, just put the vector on origin
 
