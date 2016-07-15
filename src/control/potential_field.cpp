@@ -4,8 +4,8 @@ PotentialField::PotentialField(){
 	alpha = 0.2;
 	beta = 0.4; //0.4
 	INF = 0.4; //20
-	radiusRobot = 15;
-	areaRobot = 20;
+	radiusRobot = 0.12;
+	areaRobot = 0.50;
 
 	id = 0;
 	is_last = true;
@@ -20,11 +20,12 @@ PotentialField::PotentialField(PotentialField *pp){
 	goal = pp->goal;
 }
 
-void PotentialField::linkRobots(vector<Pose> *robots){
+void PotentialField::setRobots(vector<Pose> robots){
 	this->robots = robots;
 }
 
 Pose PotentialField::calcResult(int id, Pose goal, bool is_last){
+	result = Pose(0, 0, 0);
 	this->id = id;
 	this->is_last = is_last;
 	this->goal = goal;
@@ -51,9 +52,12 @@ void PotentialField::attractiveForce(){
 	float x, y;
 	x = y = 0;
 
-	theta = radians(robots->at(id), goal);
-	distances = distance(robots->at(id), goal);
-	
+	//robots.at(id).show();
+	//goal.show();
+
+	theta = radians(robots.at(id), goal);
+	distances = distance(robots.at(id), goal);
+
 	if(is_last){
 		if(distances < radiusRobot){
 			x += 0;

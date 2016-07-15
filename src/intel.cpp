@@ -2,6 +2,27 @@
 
 Intel::Intel(){
 	ball = vball = Pose(0, 0, 0);
+
+    // init vector of robots
+    for(int i = 0 ; i < 10 ; i++){
+        Robot robot;
+
+        robot.setId(i);
+
+        if(i < 5){
+            robot.setIsOurTeam(true);
+        }
+        else {
+            robot.setIsOurTeam(false);
+        }
+
+        robot.setActPose(Pose(0, 0, 0));
+        robot.setSetPose(Pose(0, 0, 0));
+        robot.setFinalPose(Pose(0, 0, 0));
+        robot.setActVel(Pose(0, 0, 0));
+        robot.setCommand(Command(0, 0, 0));
+        robots.push_back(robot);
+    }
 }
 
 void Intel::init(){
@@ -40,32 +61,11 @@ void Intel::init(){
             penalty_spot_from_field_line_dist,
             penalty_line_from_spot_dist);
 
-            // init vector of robots
-            for(int i = 0 ; i < 10 ; i++){
-                Robot robot;
-
-                robot.setId(i);
-
-                if(i < 5){
-                    robot.setIsOurTeam(true);
-                }
-                else {
-                    robot.setIsOurTeam(false);
-                }
-
-                robot.setActPose(Pose(0, 0, 0));
-                robot.setSetPose(Pose(0, 0, 0));
-                robot.setFinalPose(Pose(0, 0, 0));
-                robot.setActVel(Pose(0, 0, 0));
-                robot.setCommand(Command(0, 0, 0));
-                robots.push_back(robot);
-            }
-
-            // set pointers
-            for(int i = 0 ; i < robots.size() ; i++){
-                robots.at(i).linkRobots(&robots);
-                robots.at(i).linkBall(&ball, &vball);
-            }
+        // set pointers
+        for(int i = 0 ; i < robots.size() ; i++){
+            robots.at(i).linkRobots(&robots);
+            robots.at(i).linkBall(&ball, &vball);
+        }
 	}
     else{
 		cerr << "not compatible" << endl;

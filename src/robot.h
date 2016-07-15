@@ -21,7 +21,7 @@ private:
 
 	vector<Robot> *robots;
 	Pose *ball, *vball;
-
+	
 public:
 	Robot();
 	Robot(Robot*);
