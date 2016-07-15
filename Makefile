@@ -34,3 +34,6 @@ $(EXEC): $(FILE_NAMES)
 
 clean: message_cleaning
 	@rm $(EXEC) $(FILE_NAMES)
+
+move:
+	mv roboime-intel /home/johnathan/Repositories/roboime/roboime-next/cli/demos/intel

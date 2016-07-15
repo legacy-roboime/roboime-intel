@@ -1,11 +1,11 @@
 #include "pid.h"
 
 PID::PID(){
-	proportionalL = 0.2000; //p1 = 0.0004
+	proportionalL = 0.0004; //p1 = 0.0004
 	derivativeL = 0.0;
 	integrativeL = 0.0;
 
-	proportionalA = 0.8000; //p2 = 0.8000
+	proportionalA = 0.0080; //p2 = 0.8000
 	derivativeA = 0.0;
 	integrativeA = 0.0;
 
@@ -30,6 +30,9 @@ PID::PID(PID *pid){
 Command PID::calcCommand(Pose actPose, Pose setPose){
 	this->actPose = actPose;
 	this->setPose = setPose;
+
+	actPose.show();
+	setPose.show();
 
 	calcProportional();
 	calcDerivative();
