@@ -31,9 +31,6 @@ Command PID::calcCommand(Pose actPose, Pose setPose){
 	this->actPose = actPose;
 	this->setPose = setPose;
 
-	actPose.show();
-	setPose.show();
-
 	calcProportional();
 	calcDerivative();
 	calcIntegrative();
