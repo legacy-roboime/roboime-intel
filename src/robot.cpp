@@ -91,7 +91,10 @@ Path Robot::getPath(){
 }
 
 void Robot::calcAction(){
+	//Pose targetPosition = potentialField.calcResult(id, *ball, true);
+	//targetPosition.show();
 	command = pid.calcCommand(actPose, *ball);
+
 	//	Path = PathPlanning(); 
 	//	Pose = PotentialField(Path.poses.at(int i = 0 -> Path.poses.size()-1));
 	// 	Command = PID(Pose);
