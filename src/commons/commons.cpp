@@ -12,4 +12,10 @@ namespace common{
 	float distance(Pose a, Pose b){
 		return sqrt(((a.getX() - b.getX())*(a.getX() - b.getX())) + ((a.getY() - b.getY())*(a.getY() - b.getY())));
 	}
+
+	Path PathPtr2Path(ob::PathPtr path_ptr){
+		Path path;
+
+		return path;
+	}
 }

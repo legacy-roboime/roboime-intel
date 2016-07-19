@@ -5,6 +5,7 @@ Robot::Robot(){
 	is_our_team = true;
 	actPose = setPose = finalPose = Pose(0, 0, 0);
 	command = Command(0, 0, 0);
+	path_is_valid_yet = false;
 }
 
 Robot::Robot(Robot *r){
@@ -15,6 +16,7 @@ Robot::Robot(Robot *r){
 	finalPose = r->finalPose;
 	command = r->command;
 	offpath = r->offpath;
+	path_is_valid_yet = r->path_is_valid_yet;
 }
 
 void Robot::linkRobots(vector<Robot> *robots){
@@ -91,6 +93,17 @@ Path Robot::getPath(){
 }
 
 void Robot::calcAction(){
+	// if(have to plan a new path)
+	//		Plan();
+	//
+	// if(distance of robot to pose_i < some_value)
+	//		i++;
+	//
+	// Pose potential = potentialField(robot to pose_i);
+	//
+	// Command cmd = pid.calcCommand(act pose to potential);
+
+	
 	vector<Pose> poses;
 
 	for(int i = 0 ; i < robots->size() ; i++){
@@ -105,10 +118,5 @@ void Robot::calcAction(){
 	targetPosition.setY(actPose.getY() + targetPosition.getY());
 
 
-	command = pid.calcCommand(actPose, targetPosition);			// Pose(0, 0, 0) to Potential Field return, just put the vector on origin
-
-	//	Path = PathPlanning(); 
-	//	Pose = PotentialField(Path.poses.at(int i = 0 -> Path.poses.size()-1));
-	// 	Command = PID(Pose);
-	// 	Done !
+	command = pid.calcCommand(actPose, targetPosition);
 }

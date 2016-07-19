@@ -16,9 +16,6 @@ Installation
 
 TODO
 ----
-* PID
-* APK
-* OMPL
 * Refactor
 * Doxygen
  
