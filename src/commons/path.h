@@ -7,13 +7,14 @@
 using namespace std;
 
 class Path{
-private:
-	vector<Pose> poses;
-
 public:
+	vector<Pose> poses;
+	
 	Path();
 	Path(vector<Pose>);
 	Path(Path*);
+
+
 
 	void setPath(vector<Pose>);
 	vector<Pose> getPath();

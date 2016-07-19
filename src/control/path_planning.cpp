@@ -2,7 +2,8 @@
 
 vector<Pose> robotsStatic;
 PathPlanning::PathPlanning(){
-    
+    lowBound = 0;
+    highBound = 1000;   
 }
 
 Path PathPlanning::solvePath(int id_robot, Pose goal_pose){
@@ -37,16 +38,17 @@ Path PathPlanning::solvePath(int id_robot, Pose goal_pose){
     pdef->setStartAndGoalStates(start, goal);
     ob::PlannerPtr planner(new og::RRTConnect(si));
     planner->setProblemDefinition(pdef);
+    
     //planner->setup();
     //si->printSettings(std::cout);
     //pdef->print(std::cout);
+
     ob::PlannerStatus solved = planner->solve(timeToResolve);
 
     if(solved){
-        ob::PathPtr path;
-        path = pdef->getSolutionPath();
-
-        
+        ob::PathPtr path_ptr;
+        path_ptr = pdef->getSolutionPath();
+        path = common::PathPtr2Path(path_ptr);
     }else{
         std::cout << "No solution found" << std::endl;
     }
@@ -62,6 +64,7 @@ bool PathPlanning::isStateValid(const ob::State *state){
     double y = state2D->getY();
 
     for(int i = 0 ; i < robotsStatic.size() ; i++){
+        robotsStatic.at(i).show();
         double dis = sqrt((x-robotsStatic.at(i).getX())*(x-robotsStatic.at(i).getX()) + (y-robotsStatic.at(i).getY())*(y-robotsStatic.at(i).getY())) - 1;/*robotsStatic.at(i).radius*/;
         if(dis < 0.0){
             ok = false;

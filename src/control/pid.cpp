@@ -46,8 +46,6 @@ void PID::calcProportional(){
 	command.setVelTan(vel_tangent);
 	command.setVelNorm(vel_normal);
 	command.setVelAng(vel_angular);
-
-	command.show();
 }
 
 void PID::calcDerivative(){

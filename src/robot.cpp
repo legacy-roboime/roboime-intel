@@ -93,6 +93,35 @@ Path Robot::getPath(){
 }
 
 void Robot::calcAction(){
+	vector<Pose> poses;
+	vector<Pose> grSim2ompl;
+
+	for(int i = 0 ; i < robots->size() ; i++){
+		poses.push_back(robots->at(i).getActPose());
+		grSim2ompl.push_back(common::grSim2OMPL(robots->at(i).getActPose()));
+		grSim2ompl.at(i).show();
+	}
+
+	potentialField.setRobots(poses);
+
+	/*pathPlanning.setRobots(grSim2ompl);
+
+	offpath = pathPlanning.solvePath(id, common::grSim2OMPL(*ball));
+
+	for(int i = 0 ; i < offpath.poses.size() ; i++){
+		offpath.poses.at(i) = common::OMPL2grSim(offpath.poses.at(i));
+	}
+
+	if(id == 0)
+		offpath.show();*/
+
+	Pose targetPosition = potentialField.calcResult(id, *ball, true);
+
+	targetPosition.setX(actPose.getX() + targetPosition.getX());
+	targetPosition.setY(actPose.getY() + targetPosition.getY());
+
+	command = pid.calcCommand(actPose, targetPosition);
+
 	// if(have to plan a new path)
 	//		Plan();
 	//
@@ -102,21 +131,4 @@ void Robot::calcAction(){
 	// Pose potential = potentialField(robot to pose_i);
 	//
 	// Command cmd = pid.calcCommand(act pose to potential);
-
-	
-	vector<Pose> poses;
-
-	for(int i = 0 ; i < robots->size() ; i++){
-		poses.push_back(robots->at(i).getActPose());
-	}
-
-	potentialField.setRobots(poses);
-
-	Pose targetPosition = potentialField.calcResult(id, *ball, true);
-
-	targetPosition.setX(actPose.getX() + targetPosition.getX());
-	targetPosition.setY(actPose.getY() + targetPosition.getY());
-
-
-	command = pid.calcCommand(actPose, targetPosition);
 }

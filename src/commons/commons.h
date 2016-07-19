@@ -17,6 +17,8 @@ namespace common{
 	float degrees(Pose a, Pose b);
 	float distance(Pose a, Pose b);
 	Path PathPtr2Path(ob::PathPtr);
+	Pose grSim2OMPL(Pose);
+	Pose OMPL2grSim(Pose);
 }
 
 #endif // _COMMONS_H_
