@@ -5,6 +5,7 @@ Robot::Robot(){
 	is_our_team = true;
 	actPose = setPose = finalPose = Pose(0, 0, 0);
 	command = Command(0, 0, 0);
+	path_is_valid_yet = false;
 }
 
 Robot::Robot(Robot *r){
@@ -15,6 +16,7 @@ Robot::Robot(Robot *r){
 	finalPose = r->finalPose;
 	command = r->command;
 	offpath = r->offpath;
+	path_is_valid_yet = r->path_is_valid_yet;
 }
 
 void Robot::linkRobots(vector<Robot> *robots){
@@ -92,23 +94,41 @@ Path Robot::getPath(){
 
 void Robot::calcAction(){
 	vector<Pose> poses;
+	vector<Pose> grSim2ompl;
 
 	for(int i = 0 ; i < robots->size() ; i++){
 		poses.push_back(robots->at(i).getActPose());
+		grSim2ompl.push_back(common::grSim2OMPL(robots->at(i).getActPose()));
+		grSim2ompl.at(i).show();
 	}
 
 	potentialField.setRobots(poses);
+
+	/*pathPlanning.setRobots(grSim2ompl);
+
+	offpath = pathPlanning.solvePath(id, common::grSim2OMPL(*ball));
+
+	for(int i = 0 ; i < offpath.poses.size() ; i++){
+		offpath.poses.at(i) = common::OMPL2grSim(offpath.poses.at(i));
+	}
+
+	if(id == 0)
+		offpath.show();*/
 
 	Pose targetPosition = potentialField.calcResult(id, *ball, true);
 
 	targetPosition.setX(actPose.getX() + targetPosition.getX());
 	targetPosition.setY(actPose.getY() + targetPosition.getY());
 
+	command = pid.calcCommand(actPose, targetPosition);
 
-	command = pid.calcCommand(actPose, targetPosition);			// Pose(0, 0, 0) to Potential Field return, just put the vector on origin
-
-	//	Path = PathPlanning(); 
-	//	Pose = PotentialField(Path.poses.at(int i = 0 -> Path.poses.size()-1));
-	// 	Command = PID(Pose);
-	// 	Done !
+	// if(have to plan a new path)
+	//		Plan();
+	//
+	// if(distance of robot to pose_i < some_value)
+	//		i++;
+	//
+	// Pose potential = potentialField(robot to pose_i);
+	//
+	// Command cmd = pid.calcCommand(act pose to potential);
 }

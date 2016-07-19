@@ -2,7 +2,10 @@ CCX = g++ -std=c++11 -w
 
 INCLUDES = -Isrc 
 
-LIBRARIES = -pthread -lm -w
+LIBRARIES_OMPL = `pkg-config --cflags --libs ompl` 
+LIBRARIES_BOOST = -lboost_system -lboost_filesystem -lboost_program_options -lboost_thread
+
+LIBRARIES = $(LIBRARIES_OMPL) $(LIBRARIES_BOOST) -pthread -lm -w
 
 SRC := $(shell find -name '*.cpp')
 FILE_NAMES_SRC = $(SRC:.cpp=.o)

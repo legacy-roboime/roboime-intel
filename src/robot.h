@@ -6,11 +6,13 @@
 #include "commons/command.h"
 #include "control/pid.h"
 #include "control/potential_field.h"
+#include "control/path_planning.h"
 
 class Robot{
 private:
 	int id;						
-	bool is_our_team;				
+	bool is_our_team;
+	bool path_is_valid_yet;				
 	Pose actPose, setPose, finalPose;
 	Pose actVel;
 	Command command;	
@@ -18,6 +20,7 @@ private:
 
 	PID pid;
 	PotentialField potentialField;
+	PathPlanning pathPlanning;
 
 	vector<Robot> *robots;
 	Pose *ball, *vball;
