@@ -120,7 +120,16 @@ void Robot::calcAction(){
 	targetPosition.setX(actPose.getX() + targetPosition.getX());
 	targetPosition.setY(actPose.getY() + targetPosition.getY());
 
+#if 0
 	command = pid.calcCommand(actPose, targetPosition);
+#else
+	float distToTarget = distance(actPose, targetPosition);
+	if (distToTarget <= 0.3) {
+		command = pid.calcCommand(actPose, *ball);
+	} else {
+		command = pid.calcCommand(actPose, targetPosition);
+	}
+#endif
 
 	// if(have to plan a new path)
 	//		Plan();
