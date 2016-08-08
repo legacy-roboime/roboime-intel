@@ -8,9 +8,6 @@ SSL_Geometry::SSL_Geometry(){
     center_circle_radius_ = 0;
     defense_radius_ = 0;
     defense_stretch_ = 0;
-    free_kick_from_defense_distance_ = 0;
-    penalty_spot_from_field_line_dist_ = 0;
-    penalty_line_from_spot_dist_ = 0;
 }
 
 SSL_Geometry::SSL_Geometry(SSL_Geometry *ssl){
@@ -20,9 +17,6 @@ SSL_Geometry::SSL_Geometry(SSL_Geometry *ssl){
     center_circle_radius_ = ssl->center_circle_radius_;
     defense_radius_ = ssl->defense_radius_;
     defense_stretch_ = ssl->defense_stretch_;
-    free_kick_from_defense_distance_ = ssl->free_kick_from_defense_distance_;
-    penalty_spot_from_field_line_dist_ = ssl->penalty_spot_from_field_line_dist_;
-    penalty_line_from_spot_dist_ = ssl->penalty_line_from_spot_dist_;
 }
 
 
@@ -32,10 +26,7 @@ void SSL_Geometry::setGeometry
         float goal_width,
         float center_circle_radius,
         float defense_radius,
-        float defense_stretch,
-        float free_kick_from_defense_distance,
-        float penalty_spot_from_field_line_dist,
-        float penalty_line_from_spot_dist)
+        float defense_stretch)
 {
 
     setFieldLength ( field_length );
@@ -44,9 +35,6 @@ void SSL_Geometry::setGeometry
     setCenterCircleRadius ( center_circle_radius );
     setDefenseRadius ( defense_radius );
     setDefenseStretch ( defense_stretch );
-    setFreeKickFromDefenseDist ( free_kick_from_defense_distance );
-    setPenaltySpotFromFieldLineDist ( penalty_spot_from_field_line_dist );
-    setPenaltyLineFromSpotDist ( penalty_line_from_spot_dist );
 }
 
 
@@ -56,10 +44,7 @@ void SSL_Geometry::setGeometry
         float goal_width,
         float center_circle_radius,
         float defense_radius,
-        float defense_stretch,
-        float free_kick_from_defense_distance,
-        float penalty_spot_from_field_line_dist,
-        float penalty_line_from_spot_dist)
+        float defense_stretch)
 {   
     field_length_ = field_length;
     field_width_ = field_width;
@@ -67,9 +52,6 @@ void SSL_Geometry::setGeometry
     center_circle_radius_ = center_circle_radius;
     defense_radius_ = defense_radius;
     defense_stretch_ = defense_stretch;
-    free_kick_from_defense_distance_ = free_kick_from_defense_distance;
-    penalty_spot_from_field_line_dist_ = penalty_spot_from_field_line_dist;
-    penalty_line_from_spot_dist_ = penalty_line_from_spot_dist;
 }*/
 /* Method for debugging 
 void SSL_Geometry::printGeometry(){
@@ -79,8 +61,5 @@ void SSL_Geometry::printGeometry(){
     << getGoalWidth() << " "
     << getCenterCircleRadius() << " "
     << getDefenseRadius() << " "
-    << getDefenseStretch() << " "
-    << getFreeKickFromDefenseDist() << " "
-    << getPenaltySpotFromFieldLineDist() << " "
-    << getPenaltyLineFromSpotDist();
+    << getDefenseStretch();
 }*/
