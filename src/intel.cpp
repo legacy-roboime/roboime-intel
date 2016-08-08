@@ -35,9 +35,6 @@ void Intel::init(){
         float center_circle_radius;
         float defense_radius;
         float defense_stretch;
-        float free_kick_from_defense_distance;
-        float penalty_spot_from_field_line_dist;
-        float penalty_line_from_spot_dist;
 
 
     	cin >> field_length
@@ -45,10 +42,7 @@ void Intel::init(){
             >> goal_width
             >> center_circle_radius
             >> defense_radius
-            >> defense_stretch
-            >> free_kick_from_defense_distance
-            >> penalty_spot_from_field_line_dist
-            >> penalty_line_from_spot_dist;
+            >> defense_stretch;
 
         geometry.setGeometry(
             field_length,
@@ -56,10 +50,7 @@ void Intel::init(){
             goal_width,
             center_circle_radius,
             defense_radius,
-            defense_stretch,
-            free_kick_from_defense_distance,
-            penalty_spot_from_field_line_dist,
-            penalty_line_from_spot_dist);
+            defense_stretch);
 
         // set pointers
         for(int i = 0 ; i < robots.size() ; i++){
@@ -109,16 +100,16 @@ void Intel::send_new_command(){
     for(int i = 0 ; i < robot_count_player ; i++){
         Command cmd(0.0f, 0.0f, 0.0f);
         const int robot_id = robots.at(i).getId();
-        float kick_x = 0.0f;
-        float kick_z = 0.0f;
+        float kick = 0.0f;
+        float chip = 0.0f;
         float spin = false;
         
         cmd = robots.at(i).getCommand();
-        kick_x = 4.0f;
-        kick_z = 0.0f;
-        spin = true;
+        kick = 4.0f;
+        chip = 0.0f;
+        spin = false;
         
-        cout << cmd.getVelTan() << " " << cmd.getVelNorm() << " " << cmd.getVelAng() << " " << kick_x << " " << kick_z << " " << spin << endl;    
+        cout << cmd.getVelTan() << " " << cmd.getVelNorm() << " " << cmd.getVelAng() << " " << kick << " " << chip << " " << spin << endl;    
     }
 }
 
@@ -127,8 +118,7 @@ void Intel::receive_new_state(){
             >> timestamp
             >> referee_state >> referee_time_left
             >> score_player >> score_opponent
-            >> goalie_id_player >> goalie_id_opponent
-            >> robot_count_player >> robot_count_opponent;
+            >> goalie_id_player >> goalie_id_opponent;
 
         float ball_x, ball_y, ball_vx, ball_vy;
         cin >> ball_x >> ball_y >> ball_vx >> ball_vy;
@@ -138,6 +128,7 @@ void Intel::receive_new_state(){
         vball.setX(ball_vx);
         vball.setY(ball_vy);
 
+        cin >> robot_count_player;
         for(int i = 0; i < robot_count_player; i++){
             int robot_id;
             float robot_x, robot_y, robot_w, robot_vx, robot_vy, robot_vw;
@@ -148,7 +139,7 @@ void Intel::receive_new_state(){
             robots.at(robot_id).setActVel(Pose(robot_vx, robot_vy, robot_vw));
         }
 
-
+        cin >> robot_count_opponent;
         for(int i = 0; i < robot_count_opponent; i++){
             int robot_id;
             float robot_x, robot_y, robot_w, robot_vx, robot_vy, robot_vw;
