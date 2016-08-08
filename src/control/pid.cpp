@@ -1,11 +1,11 @@
 #include "pid.h"
 
 PID::PID(){
-	proportionalL = 0.40; //p1 = 0.0004
+	proportionalL = 1.50; //p1 = 0.0004
 	derivativeL = 0.0;
 	integrativeL = 0.0;
 
-	proportionalA = 0.80; //p2 = 0.8000
+	proportionalA = 1.80; //p2 = 0.8000
 	derivativeA = 0.0;
 	integrativeA = 0.0;
 
@@ -41,7 +41,8 @@ Command PID::calcCommand(Pose actPose, Pose setPose){
 void PID::calcProportional(){
 	float vel_tangent = proportionalL * ((setPose.getX() - actPose.getX()) * cos(actPose.getYaw()) + (setPose.getY() - actPose.getY()) * sin(actPose.getYaw()));
 	float vel_normal = proportionalL * ((setPose.getY() - actPose.getY()) * cos(actPose.getYaw()) - (setPose.getX() - actPose.getX()) * sin(actPose.getYaw()));
-	float vel_angular = proportionalA * (setPose.getYaw() - actPose.getYaw());
+	//float vel_angular = proportionalA * (setPose.getYaw() - actPose.getYaw());
+	float vel_angular = proportionalA * (fmod(setPose.getYaw() - actPose.getYaw() + 5 * M_PI, 2 * M_PI) - M_PI);
 	
 	command.setVelTan(vel_tangent);
 	command.setVelNorm(vel_normal);
