@@ -1,6 +1,6 @@
 CXX = clang++-3.5
 CCX = $(CXX) -std=c++11 -w -lboost_system -lompl
-
+CLIFLAGS = 
 INCLUDES = -Isrc 
 
 LIBRARIES = -pthread -lm -w
